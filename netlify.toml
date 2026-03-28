@@ -1,0 +1,76 @@
+[build]
+  base    = "."
+  command = "cd frontend && npm install && npm run build"
+  publish = "frontend/dist"
+  functions = "netlify/functions"
+
+
+[dev]
+  command   = "cd frontend && npm run dev"
+  port      = 8888
+  targetPort = 5173
+  framework = "vite"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["netlify/functions/_shared/**"]
+
+# ── Auth ──────────────────────────────────────────────
+[[redirects]]
+  from  = "/api/auth/login"
+  to    = "/.netlify/functions/auth-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from  = "/api/auth/me"
+  to    = "/.netlify/functions/auth-me"
+  status = 200
+  force = true
+
+[[redirects]]
+  from  = "/api/auth/setup"
+  to    = "/.netlify/functions/auth-setup"
+  status = 200
+  force = true
+
+# ── Socios ────────────────────────────────────────────
+[[redirects]]
+  from  = "/api/socios"
+  to    = "/.netlify/functions/socios"
+  status = 200
+  force = true
+
+# ── Cuotas ────────────────────────────────────────────
+[[redirects]]
+  from  = "/api/cuotas"
+  to    = "/.netlify/functions/cuotas"
+  status = 200
+  force = true
+
+# ── Asistencia ────────────────────────────────────────
+[[redirects]]
+  from  = "/api/asistencia"
+  to    = "/.netlify/functions/asistencia"
+  status = 200
+  force = true
+
+# ── Eventos ───────────────────────────────────────────
+[[redirects]]
+  from  = "/api/eventos"
+  to    = "/.netlify/functions/eventos"
+  status = 200
+  force = true
+
+# ── Stats ─────────────────────────────────────────────
+[[redirects]]
+  from  = "/api/stats"
+  to    = "/.netlify/functions/stats"
+  status = 200
+  force = true
+
+# ── SPA fallback ──────────────────────────────────────
+[[redirects]]
+  from  = "/*"
+  to    = "/index.html"
+  status = 200
