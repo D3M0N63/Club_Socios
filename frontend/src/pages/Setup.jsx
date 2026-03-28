@@ -17,7 +17,7 @@ export default function Setup() {
     try {
       await setup(form);
       setSuccess(true);
-      setTimeout(() => navigate('/login'), 2500);
+      setTimeout(() => navigate('/admin'), 2500);
     } catch (err) {
       setError(err.message || 'Error al crear el administrador');
     } finally {
@@ -82,7 +82,7 @@ export default function Setup() {
         )}
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          <Link to="/login" className="text-blue-600 hover:underline">Volver al login</Link>
+          <Link to="/admin" className="text-blue-600 hover:underline">Volver al login</Link>
         </p>
       </div>
     </div>

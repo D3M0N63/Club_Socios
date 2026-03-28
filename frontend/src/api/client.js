@@ -14,7 +14,7 @@ export async function apiFetch(path, options = {}) {
 
   if (res.status === 401) {
     localStorage.removeItem('club_token');
-    window.location.href = '/login';
+    window.location.href = '/admin';
     return;
   }
 

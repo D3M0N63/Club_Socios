@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AppShell from './components/layout/AppShell';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Setup from './pages/Setup';
 import Dashboard from './pages/Dashboard';
@@ -14,7 +15,7 @@ import MiPerfil from './pages/MiPerfil';
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { token, isAdmin } = useAuth();
-  if (!token) return <Navigate to="/login" replace />;
+  if (!token) return <Navigate to="/admin" replace />;
   if (adminOnly && !isAdmin) return <Navigate to="/dashboard" replace />;
   return children;
 }
@@ -23,9 +24,9 @@ function AppRoutes() {
   const { token } = useAuth();
   return (
     <Routes>
-      <Route path="/login" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/admin" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
       <Route path="/setup" element={<Setup />} />
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
       <Route path="/" element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
         <Route path="dashboard"  element={<Dashboard />} />
@@ -38,7 +39,7 @@ function AppRoutes() {
         <Route path="mi-perfil"  element={<MiPerfil />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
