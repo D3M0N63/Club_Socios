@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Loader2, UserCircle } from 'lucide-react';
+import { Loader2, UserCircle, QrCode } from 'lucide-react';
+import SocioQRCode from '../components/SocioQRCode';
 import { getSocios, updateSocio } from '../api/socios';
 import { getCuotasSocio } from '../api/cuotas';
 import { useAuth } from '../context/AuthContext';
@@ -117,6 +118,22 @@ export default function MiPerfil() {
             </>
           )}
         </div>
+      </div>
+
+      {/* Mi QR */}
+      <div className="card">
+        <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <QrCode className="w-4 h-4" /> Mi código QR
+        </h2>
+        <p className="text-sm text-gray-500 mb-4">
+          Mostrá este código para registrar tu asistencia en eventos.
+        </p>
+        <SocioQRCode
+          socioId={socio.id}
+          numeroSocio={socio.numero_socio}
+          nombre={socio.nombre}
+          apellido={socio.apellido}
+        />
       </div>
 
       {/* Mis cuotas */}

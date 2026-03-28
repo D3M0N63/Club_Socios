@@ -69,6 +69,13 @@
   status = 200
   force = true
 
+# ── Socio QR (público) ────────────────────────────────
+[[redirects]]
+  from  = "/api/socio-qr"
+  to    = "/.netlify/functions/socio-qr"
+  status = 200
+  force = true
+
 # ── SPA fallback ──────────────────────────────────────
 [[redirects]]
   from  = "/*"

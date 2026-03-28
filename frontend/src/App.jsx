@@ -12,6 +12,7 @@ import AsistenciaPage from './pages/asistencia/AsistenciaPage';
 import EventosList from './pages/eventos/EventosList';
 import EventoDetail from './pages/eventos/EventoDetail';
 import MiPerfil from './pages/MiPerfil';
+import SocioQRPage from './pages/SocioQRPage';
 
 function ProtectedRoute({ children, adminOnly = false }) {
   const { token, isAdmin } = useAuth();
@@ -25,6 +26,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/qr/:id" element={<SocioQRPage />} />
       <Route path="/admin" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
       <Route path="/setup" element={<Setup />} />
 

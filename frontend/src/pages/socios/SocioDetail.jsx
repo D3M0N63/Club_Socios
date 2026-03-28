@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { ArrowLeft, Pencil, CreditCard, CalendarCheck, Loader2 } from 'lucide-react';
+import { ArrowLeft, Pencil, CreditCard, CalendarCheck, Loader2, QrCode } from 'lucide-react';
+import SocioQRCode from '../../components/SocioQRCode';
 import { getSocio } from '../../api/socios';
 import { getCuotasSocio, createCuota, deleteCuota } from '../../api/cuotas';
 import { getAsistencia } from '../../api/asistencia';
@@ -177,6 +178,19 @@ export default function SocioDetail() {
           ))}
         </div>
         {socio.notas && <p className="mt-4 text-sm text-gray-500 border-t pt-4">{socio.notas}</p>}
+      </div>
+
+      {/* QR */}
+      <div className="card">
+        <h2 className="text-base font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <QrCode className="w-4 h-4" /> Código QR
+        </h2>
+        <SocioQRCode
+          socioId={socio.id}
+          numeroSocio={socio.numero_socio}
+          nombre={socio.nombre}
+          apellido={socio.apellido}
+        />
       </div>
 
       {/* Cuotas */}
