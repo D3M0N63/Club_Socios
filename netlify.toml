@@ -1,6 +1,6 @@
 [build]
   base    = "."
-  command = "cd frontend && npm install && npm run build"
+  command = "cd frontend && npm install && npm run build && cp ../index.html dist/home.html"
   publish = "frontend/dist"
   functions = "netlify/functions"
 
@@ -73,6 +73,13 @@
 [[redirects]]
   from  = "/api/socio-qr"
   to    = "/.netlify/functions/socio-qr"
+  status = 200
+  force = true
+
+# ── Home (landing estático) ───────────────────────────
+[[redirects]]
+  from  = "/"
+  to    = "/home.html"
   status = 200
   force = true
 

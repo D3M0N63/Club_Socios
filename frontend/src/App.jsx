@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AppShell from './components/layout/AppShell';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Setup from './pages/Setup';
 import Dashboard from './pages/Dashboard';
@@ -25,7 +24,6 @@ function AppRoutes() {
   const { token } = useAuth();
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/qr/:id" element={<SocioQRPage />} />
       <Route path="/admin" element={token ? <Navigate to="/dashboard" replace /> : <Login />} />
       <Route path="/setup" element={<Setup />} />
@@ -41,7 +39,7 @@ function AppRoutes() {
         <Route path="mi-perfil"  element={<MiPerfil />} />
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
   );
 }
